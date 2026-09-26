@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Youssef Fned — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E0B16; --bg2:#171220; --line:#2B2438; --fg:#EFEAF7; --fg-muted:#A79FBD;
+  --violet:#A78BFA; --violet-deep:#7C3AED; --pill:#1E1830;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; scroll-padding-top:80px;}
+body{margin:0; background:var(--bg); color:var(--fg); font-family:'Inter',-apple-system,sans-serif; line-height:1.6;}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif; margin:0;}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+.wrap{max-width:1180px; margin:40px auto; padding:0 24px;}
+.accent{color:var(--violet);}
+
+header{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:rgba(14,11,22,.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:18px 24px;  margin:0 !important;  }
+.brand{font-family:'Space Grotesk',sans-serif; font-size:1.2rem; font-weight:700;}
+.navlinks{display:flex; align-items:center; gap:26px; list-style:none; margin:0; padding:0; font-size:.92rem;}
+.navlinks a{color:var(--fg-muted);}
+.navlinks a:hover,.navlinks a:focus-visible{color:var(--fg);}
+.cta-btn{background:linear-gradient(135deg,var(--violet),var(--violet-deep)); color:#fff!important; padding:9px 18px; border-radius:999px; font-weight:600; font-size:.88rem;}
+.navtoggle{display:none; background:none; border:1px solid var(--line); color:var(--fg); border-radius:6px; padding:6px 10px; font-size:1.1rem;}
+
+section{padding:80px 0;}
+.badge{display:inline-flex; align-items:center; gap:8px; background:var(--pill); border:1px solid var(--line); border-radius:999px; padding:6px 16px; font-size:.85rem; color:var(--fg-muted); margin-bottom:24px;}
+.dot{width:8px; height:8px; border-radius:50%; background:#4ADE80;}
+
+.hero{padding-top:64px;}
+.hero-grid{display:grid; grid-template-columns:1.3fr .7fr; gap:40px; align-items:center;}
+.hero h1{font-size:clamp(2.4rem,5.5vw,3.6rem); line-height:1.08; font-weight:700; margin-bottom:20px;}
+.hero p{color:var(--fg-muted); font-size:1.08rem; max-width:52ch; margin-bottom:32px;}
+.hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+.btn-primary{background:linear-gradient(135deg,var(--violet),var(--violet-deep)); color:#fff; padding:13px 26px; border-radius:10px; font-weight:600; box-shadow:0 8px 24px -8px rgba(124,58,237,.6);}
+.btn-secondary{border:1px solid var(--line); padding:13px 26px; border-radius:10px; font-weight:600;}
+.hero-photo{width:220px; height:220px; border-radius:50%; margin:0 auto; object-fit:cover; background:radial-gradient(circle at 35% 30%,#3B2A5C,#100B1A); border:2px solid var(--line); box-shadow:0 0 60px -10px rgba(167,139,250,.45);}
+
+.stats{border-top:1px solid var(--line); border-bottom:1px solid var(--line);margin: 30px 0;}
+.stats .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:0px 24px; text-align:center;}
+.stats .num{font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; color:var(--violet);}
+.stats .label{color:var(--fg-muted); font-size:.85rem; margin-top:4px;}
+
+.section-head{text-align:center; max-width:640px; margin:0 auto 48px;}
+.section-head h2{font-size:2rem; margin-bottom:12px;}
+.section-head p{color:var(--fg-muted); margin:0;}
+
+.cards3{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px;}
+.card{background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:28px;}
+.icon-box{width:44px; height:44px; border-radius:10px; background:var(--pill); display:flex; align-items:center; justify-content:center; margin-bottom:18px; color:var(--violet);}
+.card h3{font-size:1.1rem; margin-bottom:10px;}
+.card p{color:var(--fg-muted); font-size:.92rem; margin:0 0 16px;}
+.chiprow{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{background:var(--pill); border:1px solid var(--line); border-radius:6px; padding:4px 10px; font-size:.78rem; color:var(--fg-muted);}
+
+.tabs{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:40px;}
+.tab{background:var(--bg2); border:1px solid var(--line); border-radius:999px; padding:8px 18px; font-size:.88rem; color:var(--fg-muted); cursor:pointer;}
+.tab.active{background:var(--pill); border-color:var(--violet); color:var(--fg);}
+
+.projgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px;}
+.pcard{background:var(--bg2); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+.pcard .top{height:110px; background:linear-gradient(135deg,#241A3B,#150F22); display:flex; align-items:center; justify-content:center; color:var(--violet); opacity:.6;}
+.pcard .body{padding:22px;}
+.tag-cat{display:inline-block; font-size:.72rem; color:var(--violet); border:1px solid var(--violet); border-radius:5px; padding:2px 8px; margin-bottom:10px;}
+.pcard h3{font-size:1.05rem; margin-bottom:8px;}
+.pcard p{color:var(--fg-muted); font-size:.88rem; margin:0 0 14px;}
+.links{display:flex; gap:16px; font-size:.84rem; padding-top:6px; border-top:1px solid var(--line); margin-top:14px;}
+.links a{color:var(--violet);}
+
+.testi{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px;}
+.testi .card p{font-style:italic;}
+.stars{color:var(--violet); font-size:.85rem; margin-bottom:12px;}
+.who{display:flex; align-items:center; gap:10px; margin-top:16px;}
+.avatar{width:34px; height:34px; border-radius:50%; background:var(--pill); display:flex; align-items:center; justify-content:center; font-size:.8rem; color:var(--violet);}
+.who .name{font-size:.9rem; font-weight:600;}
+.who .role{font-size:.78rem; color:var(--fg-muted);}
+
+.stackgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;}
+.stackcard{background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:20px 22px;}
+.stackcard h3{font-size:.78rem; letter-spacing:.03em; color:var(--violet); border-left:3px solid var(--violet); padding-left:10px; margin-bottom:14px;}
+.stackcard .chiprow{gap:8px;}
+
+.about p{color:var(--fg-muted); max-width:70ch; margin:0 auto 28px; text-align:center;}
+.about-center{text-align:center;}
+.dl-btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:999px; padding:11px 22px; font-weight:600; font-size:.9rem;}
+
+.contact-grid{display:grid; grid-template-columns:1fr; gap:40px;}
+.field{margin-bottom:18px;}
+.field label{display:block; font-size:.85rem; margin-bottom:6px; color:var(--fg-muted);}
+.field input,.field textarea,.field select{width:100%; background:var(--bg2); border:1px solid var(--line); border-radius:8px; padding:12px 14px; color:var(--fg); font-family:inherit; font-size:.92rem;}
+.field textarea{resize:vertical; min-height:120px;}
+.send-btn{width:100%; background:linear-gradient(135deg,var(--violet),var(--violet-deep)); color:#fff; border:none; padding:14px; border-radius:10px; font-weight:600; font-size:.95rem; cursor:pointer;}
+.contact-side{display:flex; flex-direction:column; gap:18px;}
+.contact-row{display:flex; align-items:center; gap:12px; color:var(--fg-muted);}
+.contact-row a{color:var(--fg);}
+
+footer{border-top:1px solid var(--line); padding:32px 0; text-align:center; color:var(--fg-muted); font-size:.85rem;}
+
+@media (max-width:760px){
+  .hero-grid{grid-template-columns:1fr; text-align:center;}
+  .hero p{margin-left:auto; margin-right:auto;}
+  .hero-actions{justify-content:center;}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);}
+  .contact-grid{grid-template-columns:1fr;}
+  .navlinks{position:fixed; inset:64px 0 auto 0; background:var(--bg); flex-direction:column; align-items:flex-start; padding:20px 24px; border-bottom:1px solid var(--line); gap:16px; transform:translateY(-130%); transition:transform .25s;}
+  .navlinks.open{transform:translateY(0);}
+  .navtoggle{display:block;}
+
+  .hero {padding-top: 0px;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">YF<span class="accent">.</span></div>
+    <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="cta-btn">Get In Touch</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="badge"><span class="dot"></span> Open to internships &amp; freelance work</div>
+        <h1>I'm a Software <span class="accent">Engineer.</span></h1>
+        <p>I build full-stack web apps, backend systems, and mobile apps for startups and teams — from React interfaces and Flutter / React Native apps to distributed pipelines and ai . Engineering student at FST, shipping independent projects on the side.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn-primary">See My Work</a>
+          <a href="#contact" class="btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+      <div>
+        <img src="ysf.jpg" alt="Youssef Fned" class="hero-photo">
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="wrap">
+      <div><div class="num">5+</div><div class="label">Years Coding</div></div>
+      <div><div class="num">20+</div><div class="label">Projects Built</div></div>
+      <div><div class="num">2</div><div class="label">Company Worked With</div></div>
+      <div><div class="num">5</div><div class="label">Core Stacks</div></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="services">
+    <div class="section-head">
+      <h2>What I Do</h2>
+      <p>End-to-end software work: interfaces, backends, and the systems that connect them.</p>
+    </div>
+    <div class="cards3">
+      <div class="card">
+        <div class="icon-box">&lt;/&gt;</div>
+        <h3>Full-Stack Development</h3>
+        <p>Web applications built with React, Node.js, and Express, backed by MongoDB or PostgreSQL. From idea to a working product.</p>
+        <div class="chiprow"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">MongoDB</span></div>
+      </div>
+      <div class="card">
+        <div class="icon-box">📱</div>
+        <h3>Mobile Development</h3>
+        <p>Cross-platform mobile apps with Flutter and React Native, sharing a single codebase across iOS and Android without sacrificing native feel.</p>
+        <div class="chiprow"><span class="chip">Flutter</span><span class="chip">React Native</span></div>
+      </div>
+      <div class="card">
+        <div class="icon-box">◱</div>
+        <h3>Distributed Systems</h3>
+        <p>Event-driven backends with Spring Boot and Apache Kafka, designed to collect, process, and visualize data at scale.</p>
+        <div class="chiprow"><span class="chip">Spring Boot</span><span class="chip">Kafka</span><span class="chip">Grafana</span></div>
+      </div>
+      <div class="card">
+        <div class="icon-box">⚙</div>
+        <h3>AI &amp; Data</h3>
+        <p>From ETL pipelines to machine learning — I enjoy the systems that sit underneath the interface.</p>
+        <div class="chiprow"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">SQL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Selected Work</h2>
+        <p>A mix of full-stack apps, distributed systems, and algorithmic projects.</p>
+      </div>
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-filter="all">All</button>
+        <button class="tab" data-filter="fullstack">Full-Stack</button>
+        <button class="tab" data-filter="systems">Systems</button>
+        <button class="tab" data-filter="algo">Algorithms</button>
+        <button class="tab" data-filter="data">Data</button>
+      </div>
+      <div class="projgrid" id="projgrid">
+
+        <div class="pcard" data-cat="systems">
+          <div class="top">◱</div>
+          <div class="body">
+            <span class="tag-cat">Systems</span>
+            <h3>API Monitoring Platform</h3>
+            <p>A distributed API monitoring platform that automatically collects, stores, analyzes, and visualizes API performance metrics in real time.</p>
+            <div class="chiprow"><span class="chip">Spring Boot</span><span class="chip">Kafka</span><span class="chip">PostgreSQL</span><span class="chip">Grafana</span></div>
+            <div class="links"><a href="https://github.com/fned-ship/API-Monitoring-Platform" target="_blank" rel="noopener">&lt;&gt; Code</a></div>
+          </div>
+        </div>
+
+        <div class="pcard" data-cat="fullstack">
+          <div class="top">🎫</div>
+          <div class="body">
+            <span class="tag-cat">Full-Stack</span>
+            <h3>Internal Help Desk App</h3>
+            <p>A ticketing app for internal company support — employees open tickets, IT staff triage and resolve them, with status tracking and role-based access.</p>
+            <div class="chiprow"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span></div>
+            <div class="links"><a href="https://github.com/fned-ship/internalHelpDesk-app" target="_blank" rel="noopener">&lt;&gt; Code</a></div>
+          </div>
+        </div>
+
+        <div class="pcard" data-cat="fullstack">
+          <div class="top">🍽</div>
+          <div class="body">
+            <span class="tag-cat">Full-Stack</span>
+            <h3>Dynamic Restaurant Platform</h3>
+            <p>A multi-role restaurant system: customers order, waiters manage tables, chefs track the kitchen queue, and delivery staff handle dispatch — all synced in real time.</p>
+            <div class="chiprow"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Socket.IO</span><span class="chip">MongoDB</span></div>
+            <div class="links"><a href="https://github.com/fned-ship/best-bites-app" target="_blank" rel="noopener">&lt;&gt; Code</a></div>
+          </div>
+        </div>
+
+        <div class="pcard" data-cat="fullstack">
+          <div class="top">🎥</div>
+          <div class="body">
+            <span class="tag-cat">Full-Stack</span>
+            <h3>Random Video Chat Platform</h3>
+            <p>Real-time peer-to-peer video chat with an AI moderation layer built on TensorFlow.js to flag inappropriate content live.</p>
+            <div class="chiprow"><span class="chip">MERN</span><span class="chip">WebRTC</span><span class="chip">TensorFlow.js</span></div>
+            <div class="links"><a href="https://github.com/fned-ship/chatFate-server" target="_blank" rel="noopener">&lt;&gt; Code</a></div>
+          </div>
+        </div>
+
+        <div class="pcard" data-cat="algo">
+          <div class="top">♟</div>
+          <div class="body">
+            <span class="tag-cat">Algorithms</span>
+            <h3>Chess Engine</h3>
+            <p>A chess engine using Minimax search optimized with alpha-beta pruning, paired with an interactive playable interface.</p>
+            <div class="chiprow"><span class="chip">C</span><span class="chip">JavaScript</span></div>
+            <div class="links"><a href="https://github.com/fned-ship/chessBot" target="_blank" rel="noopener">&lt;&gt; Code</a></div>
+          </div>
+        </div>
+
+        <div class="pcard" data-cat="algo">
+          <div class="top">⌘</div>
+          <div class="body">
+            <span class="tag-cat">Algorithms</span>
+            <h3>SLR Compiler</h3>
+            <p>Lexical, syntactic (SLR), and semantic analysis, with hand-built parsing tables and formal grammars.</p>
+            <div class="chiprow"><span class="chip">Java</span></div>
+            <div class="links"><a href="https://github.com/fned-ship/compiler" target="_blank" rel="noopener">&lt;&gt; Code</a></div>
+          </div>
+        </div>
+
+        <div class="pcard" data-cat="algo">
+          <div class="top">◇</div>
+          <div class="body">
+            <span class="tag-cat">Algorithms</span>
+            <h3>Graph Theory Visualizer</h3>
+            <p>Interactive visualization of shortest-path search (Dijkstra), graph coloring, and cycle detection.</p>
+            <div class="chiprow"><span class="chip">Python</span><span class="chip">Pygame</span></div>
+            <div class="links"><a href="https://github.com/fned-ship/Graph-Generator" target="_blank" rel="noopener">&lt;&gt; Code</a></div>
+          </div>
+        </div>
+
+        <div class="pcard" data-cat="data">
+          <div class="top">▤</div>
+          <div class="body">
+            <span class="tag-cat">Data</span>
+            <h3>IMDB Data Warehouse</h3>
+            <p>Star-schema warehouse over IMDB ratings data, with ETL pipelines feeding analytical dashboards.</p>
+            <div class="chiprow"><span class="chip">SQL</span><span class="chip">ETL</span></div>
+            <div class="links"><a href="https://github.com/fned-ship/movies-data-warehouse" target="_blank" rel="noopener">&lt;&gt; Code</a></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- <section class="wrap">
+    <div class="section-head">
+      <h2>What People Say</h2>
+      <p>Feedback from teams and collaborators — add yours here.</p>
+    </div>
+    <div class="testi">
+
+      <div class="card">
+        <div class="stars">★★★★★</div>
+        <p>"[Add a short quote about working with Youssef — reliability, communication, or technical quality.]"</p>
+        <div class="who"><div class="avatar">?</div><div><div class="name">Your Client</div><div class="role">Role, Company</div></div></div>
+      </div>
+
+    </div>
+  </section> -->
+
+
+
+  <section class="wrap" id="experience">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <p>Where I've worked and what I built.</p>
+    </div>
+    <div class="card" style="max-width:760px; margin:0 auto;">
+      <span class="tag-cat">2024 – 2025</span>
+      <h3 style="margin-top:10px;">Full Stack Developer — DATHEX, Sfax</h3>
+      <p>Built an onboarding platform for new employees: React frontend, Node.js backend, MongoDB storage, a collaborative Q&amp;A forum, and online training modules.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="stack">
+    <div class="section-head">
+      <h2>Tech Stack</h2>
+      <p>The tools and technologies I work with.</p>
+    </div>
+    <div class="stackgrid">
+      <div class="stackcard"><h3>FRONTEND</h3><div class="chiprow"><span class="chip">React</span><span class="chip">Angular</span></div></div>
+      <div class="stackcard"><h3>MOBILE</h3><div class="chiprow"><span class="chip">Flutter</span><span class="chip">React Native</span><span class="chip">Dart</span></div></div>
+      <div class="stackcard"><h3>BACKEND</h3><div class="chiprow"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Spring</span></div></div>
+      <div class="stackcard"><h3>DATABASES</h3><div class="chiprow"><span class="chip">MongoDB</span><span class="chip">PostgreSQL</span></div></div>
+      <div class="stackcard"><h3>DATA &amp; PIPELINES</h3><div class="chiprow"><span class="chip">Kafka</span><span class="chip">ETL</span><span class="chip">Grafana</span></div></div>
+      <div class="stackcard"><h3>LANGUAGES</h3><div class="chiprow"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">C</span><span class="chip">C++</span></div></div>
+      <div class="stackcard"><h3>TOOLS</h3><div class="chiprow"><span class="chip">Git</span><span class="chip">Agile/Scrum</span></div></div>
+    </div>
+  </section>
+
+  <section class="wrap about" id="about">
+    <div class="section-head about-center">
+      <h2>About</h2>
+    </div>
+    <p>I'm an engineering student at the Faculté des Sciences de Tunis, working across full-stack development, mobile development, distributed systems, and algorithms. Two years of intensive preparatory classes taught me rigor; the projects since then have been about applying it independently — from a Kafka-based monitoring platform to a hand-built compiler. I'm currently open to internships, freelance projects, and collaborations.</p>
+    <div class="about-center">
+      <a href="cv_fned_youssef.pdf" download="cv.pdf" class="dl-btn">⭳ Download CV</a>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="section-head">
+      <h2>Get In Touch</h2>
+      <p>Have a project in mind, or just want to talk shop? Reach out.</p>
+    </div>
+    <div class="contact-grid">
+      <!-- <form class="card" id="contactForm">
+        <div class="field"><label>Name</label><input type="text" id="cf-name" placeholder="Your name" required></div>
+        <div class="field"><label>Email</label><input type="email" id="cf-email" placeholder="you@example.com" required></div>
+        <div class="field"><label>Subject</label>
+          <select id="cf-subject"><option>Project Inquiry</option><option>Internship / Job Opportunity</option><option>Collaboration</option><option>Other</option></select>
+        </div>
+        <div class="field"><label>Message</label><textarea id="cf-message" placeholder="Tell me about your project..." required></textarea></div>
+        <button class="send-btn" type="submit" id="cf-submit">Send Message</button>
+        <p id="cfstatus" style="margin:14px 0 0; font-size:.85rem;"></p>
+      </form> -->
+      <div class="contact-side">
+        <div class="card">
+          <div class="contact-row">✉ <a href="mailto:fnedyoussef222@gmail.com">fnedyoussef222@gmail.com</a></div>
+          <div class="contact-row" style="margin-top:14px;">☏ <a href="tel:+21658988448">+216 58 988 448</a></div>
+          <div class="contact-row" style="margin-top:14px;">⌥ <a href="https://github.com/fned-ship" target="_blank" rel="noopener">github.com/fned-ship</a></div>
+          <div class="contact-row" style="margin-top:14px;">in <a href="https://www.linkedin.com/in/youssef-fned-a953943a0/" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Youssef Fned — Tunis , Tunisia</footer>
+<script>
+  // Point this at your deployed backend once it's live (see the /backend folder).
+  var CONTACT_API_URL = "http://localhost:5000/api/contact";
+
+  // Use event delegation on the document for the form submit
+  document.addEventListener('submit', function(e) {
+    // Check if the form being submitted is the contact form
+    if (e.target && e.target.id === 'contactForm') {
+      e.preventDefault();
+      
+      var form = e.target;
+      var status = document.getElementById('cfstatus');
+      var submitBtn = document.getElementById('cf-submit');
+
+      var payload = {
+        name: document.getElementById('cf-name').value.trim(),
+        email: document.getElementById('cf-email').value.trim(),
+        subject: document.getElementById('cf-subject').value,
+        message: document.getElementById('cf-message').value.trim()
+      };
+
+      if (!payload.name || !payload.email || !payload.message) {
+        if (status) {
+          status.textContent = 'Please fill in your name, email, and message.';
+          status.style.color = '#F87171';
+        }
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true; 
+        submitBtn.textContent = 'Sending...';
+      }
+      
+      if (status) {
+        status.textContent = ''; 
+        status.style.color = '';
+      }
+
+      fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res) { if (!res.ok) throw new Error('Request failed'); return res.json(); })
+      .then(function() {
+        if (status) {
+          status.textContent = 'Message sent — thanks for reaching out! I\'ll get back to you soon.';
+          status.style.color = '#4ADE80';
+        }
+        form.reset();
+      })
+      .catch(function() {
+        if (status) {
+          status.textContent = 'Something went wrong sending your message. Try emailing me directly instead.';
+          status.style.color = '#F87171';
+        }
+      })
+      .finally(function() { 
+        if (submitBtn) {
+          submitBtn.disabled = false; 
+          submitBtn.textContent = 'Send Message'; 
+        }
+      });
+    }
+  });
+
+  // Safe Navigation Toggle using event delegation (click)
+  document.addEventListener('click', function(e) {
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    
+    if (!toggle || !links) return;
+
+    // If the click is on the burger menu toggle button
+    if (toggle.contains(e.target) || e.target === toggle) {
+      var o = links.classList.toggle('open'); 
+      toggle.setAttribute('aria-expanded', o);
+    }
+    
+    // If the click is on a link inside the nav menu
+    if (e.target.tagName === 'A' && links.contains(e.target)) {
+      links.classList.remove('open'); 
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Safe Portfolio Tabs using event delegation (click)
+  document.addEventListener('click', function(e) {
+    // Check if clicked element or its closest parent is a tab
+    var t = e.target.closest('.tab');
+    if (!t) return;
+
+    var tabs = document.querySelectorAll('.tab');
+    var cards = document.querySelectorAll('.pcard');
+
+    tabs.forEach(function(x) { x.classList.remove('active'); });
+    t.classList.add('active');
+    
+    var f = t.getAttribute('data-filter');
+    cards.forEach(function(c) { 
+      c.style.display = (f === 'all' || c.getAttribute('data-cat') === f) ? '' : 'none'; 
+    });
+  });
+</script>
+
+
+</body>
+</html>
